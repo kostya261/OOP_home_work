@@ -1,0 +1,84 @@
+# Проект домашнего задания на SkyEng
+## Описание:
+Изучаем ООП.
+
+## Установка:
+
+1. Клонируйте репозиторий:
+   [ссылка](https://github.com/kostya261/PythonProject/pull/3)
+   
+3. Зависимости указанные в файле: *pyproject.toml*
+```
+[tool.poetry]
+name = "oop-home-work"
+version = "0.1.0"
+description = ""
+authors = ["Kosarew Konstantin <kos26193@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pytest = "^8.4.1"
+click = "==8.2.2"
+
+
+[tool.poetry.group.lint.dependencies]
+flake8 = "^7.3.0"
+black = "^25.1.0"
+isort = "^6.0.1"
+mypy = "^1.17.1"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^6.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+```
+
+## Использование:
+
+Откройте проект например в PyCharm, найдите OOP_home_work\src, откройте файл main.py и запустите его.
+По желанию можно его всячески модифицировать в рамках тестирования написанных функций.
+
+В OOP_home_work\src описан модуль:
+**models.py**, который и реализуют весь скромный функционал домашнего задания.
+
+### masks.py
+В модуле models.py описаны классы *Product* и *Category*
+
+*class Product* - описывает структуру продукта и производит инициализацию
+*class Category* - описывает структуру категории продуктов и производит инициализацию
+
+
+Примеры использования:
+```
+product = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+
+print(product1.name)
+print(product1.description)
+print(product1.price)
+print(product1.quantity)
+```
+Результат:
+```
+Iphone 15
+512GB, Gray space
+210000.0
+8
+```
+
+## Тесты
+Добавлены тестовые файлы test_models.py
+которые проверяют ранее написанные функции.
+В них реализованы функции:
+1. test_init_products,
+2. test_category_creation,
+
+
+Тест запускается из командной строки, командой **pytest**
+
+## Лицензия:
+
+В данном конкретном случае вероятно её ещё нет 8-/
