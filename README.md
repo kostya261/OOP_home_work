@@ -18,8 +18,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.13"
-pytest = "^8.4.1"
-click = "==8.2.2"
+poetry-core = "^2.1.3"
+
 
 
 [tool.poetry.group.lint.dependencies]
@@ -31,6 +31,7 @@ mypy = "^1.17.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^6.2.1"
+pytest = "^8.4.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -42,10 +43,10 @@ build-backend = "poetry.core.masonry.api"
 Откройте проект например в PyCharm, найдите OOP_home_work\src, откройте файл main.py и запустите его.
 По желанию можно его всячески модифицировать в рамках тестирования написанных функций.
 
-В OOP_home_work\src описан модуль:
+В OOP_home_work\ описан модуль:
 **models.py**, который и реализуют весь скромный функционал домашнего задания.
 
-### masks.py
+### models.py
 В модуле models.py описаны классы *Product* и *Category*
 
 *class Product* - описывает структуру продукта и производит инициализацию
