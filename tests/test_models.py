@@ -65,7 +65,6 @@ def test_category_creation(
     assert len(category.products) == expected_len
 
     # Проверяю счетчики категорий и продуктов
-    # print()
     # print(Category.category_count, expected_cat_count)
     # print(Category.product_count, expected_prod_count)
     assert Category.category_count == expected_cat_count
