@@ -56,7 +56,6 @@ if __name__ == "__main__":
         print(f"Цена: {product.price}")
         print("-----")
 
-
     prod3 = Product("Androider 13", "Круче Супер Крутого крутого телефона", 30_000, 15)
     category1.add_product(prod3)
 
@@ -65,7 +64,7 @@ if __name__ == "__main__":
         "name": "Ноутбук",
         "price": 50000,
         "description": "Игровой ноутбук с RTX 3060",
-        "quantity": 10
+        "quantity": 10,
     }
 
     laptop_1 = Product.new_product(product_data)
