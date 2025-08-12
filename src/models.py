@@ -78,5 +78,7 @@ class Category:
         :param product: класс Product
         :return:
         """
+        if not isinstance(product, Product):  # Проверяет класс и наследников
+            raise TypeError(f"Ожидается Product, получен {type(product).__name__}")
         self.__products.append(product)
 
