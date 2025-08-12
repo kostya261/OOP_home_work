@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     print(category1.name == "Смартфоны")
     print(category1.description)
-    print(len(category1.products))
+    print(len(category1.product))
     print(category1.category_count)
     print(category1.product_count)
 
@@ -43,15 +43,42 @@ if __name__ == "__main__":
 
     print(category2.name)
     print(category2.description)
-    print(len(category2.products))
-    print(category2.products)
+    print(len(category2.product))
+    print(category2.product)
 
     print(Category.category_count)
     print(Category.product_count)
 
     print("\nкак пример что содержится в классе category1:\n")
-    for product in category1.products:
+    for product in category1.product:
         print(f"Название: {product.name}")
         print(f"Описание: {product.description}")
         print(f"Цена: {product.price}")
         print("-----")
+
+
+    prod3 = Product("Androider 13", "Круче Супер Крутого крутого телефона", 30_000, 15)
+    category1.add_product(prod3)
+
+    # Данные товара в виде словаря
+    product_data = {
+        "name": "Ноутбук",
+        "price": 50000,
+        "description": "Игровой ноутбук с RTX 3060",
+        "quantity": 10
+    }
+
+    laptop_1 = Product.new_product(product_data)
+
+    category2.add_product(laptop_1)
+
+    print()
+    for product in category2.product:
+        print(f"Название: {product.name}")
+        print(f"Описание: {product.description}")
+        print(f"Цена: {product.price}")
+        print("-----")
+
+    prod3.set_price(0)
+    prod3.set_price(20000)
+    print(prod3.price)
