@@ -79,5 +79,43 @@ if __name__ == "__main__":
         print("-----")
 
     prod3.set_price(0)
-    prod3.set_price(20000)
+#    prod3.set_price(20000)
     print(prod3.price)
+
+
+# 15.1
+    print()
+    print("_____Домашнее задание 15.1______")
+
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    print(str(product1))
+    print(str(product2))
+    print(str(product3))
+
+    category1 = Category(
+        "Смартфоны",
+        "Смартфоны, как средство не только коммуникации, но и получения дополнительных функций для удобства жизни",
+        [product1, product2, product3]
+    )
+
+    print(str(category1))
+
+    #print(category1.product)
+    #^____ этот момент я не понял, что от меня требуется.
+    # точнее Герман ИИ объяснил, что должно вывести названия этих продуктов
+    # но тогда не будет выводиться
+    # Смартфоны, количество продуктов: 7 шт.    ????
+    # опять же я не понял, что именно должна вывести данная строка в категории.
+    # колличество всех продуктов на складе или число внесенных продуктов
+
+    print()
+    for product in category1.product:
+        print(product)
+
+    print()
+    print(product1 + product2)
+    print(product1 + product3)
+    print(product2 + product3)
