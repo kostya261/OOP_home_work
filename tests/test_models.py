@@ -97,3 +97,36 @@ def test_add_new_product(category, product_data, capsys):
     product.set_price(0)
     captured = capsys.readouterr()
     assert captured.out == "\nЦена не должна быть нулевая или отрицательная\n"
+
+
+def test_add_product(product_data, product_data2):
+    prod1 = Product.new_product(product_data)
+    prod2 = Product.new_product(product_data2)
+
+    res = prod1 + prod2
+    assert res == 570000
+
+    res = prod1 + prod1
+    assert res == 300000
+
+    res = prod2 + prod2
+    assert res == 840000
+
+
+def test_str_product(product_data, capsys):
+    prod1 = Product.new_product(product_data)
+    print(prod1)
+    captured = capsys.readouterr()
+    assert captured.out == "Ноутбук, 50000 руб. Остаток 3\n"
+
+
+def test_str_category(category, product_data, capsys):
+    category_electronika = category
+
+    # Добавление нового товара в категорию.
+    product = Product.new_product(product_data)
+    category_electronika.add_product(product)
+
+    print(category_electronika)
+    captured = capsys.readouterr()
+    assert captured.out == "Электроника, количество продуктов: 3 шт.\n"
