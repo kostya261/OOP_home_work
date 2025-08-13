@@ -18,8 +18,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.13"
-pytest = "^8.4.1"
-click = "==8.2.2"
+poetry-core = "^2.1.3"
+
 
 
 [tool.poetry.group.lint.dependencies]
@@ -31,6 +31,7 @@ mypy = "^1.17.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest-cov = "^6.2.1"
+pytest = "^8.4.1"
 
 [build-system]
 requires = ["poetry-core"]
@@ -42,10 +43,10 @@ build-backend = "poetry.core.masonry.api"
 Откройте проект например в PyCharm, найдите OOP_home_work\src, откройте файл main.py и запустите его.
 По желанию можно его всячески модифицировать в рамках тестирования написанных функций.
 
-В OOP_home_work\src описан модуль:
+В OOP_home_work\ описан модуль:
 **models.py**, который и реализуют весь скромный функционал домашнего задания.
 
-### masks.py
+### models.py
 В модуле models.py описаны классы *Product* и *Category*
 
 *class Product* - описывает структуру продукта и производит инициализацию
@@ -68,6 +69,29 @@ Iphone 15
 210000.0
 8
 ```
+
+12.08.2025
+Добавлены новые методы в классы Product и Category
+Product:
+геттер price - возвращает цену продукта
+и
+сеттер set_price - устанавливает новую цену продукта и проверяет что бы была не меньше нуля
+добавлен классметод:
+new_product - добавляет/ создает новый продукт из словаря
+13.08.2025
+добавлены методы:
+__str__
+__add__
+
+
+Category:
+геттер product - возвращает список продуктов
+сеттер add_product - добавляет новый продукт
+13.08.2025
+добавлен метод:
+__str__
+
+
 
 ## Тесты
 Добавлены тестовые файлы test_models.py
