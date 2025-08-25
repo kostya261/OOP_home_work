@@ -57,6 +57,47 @@ class Product:
         )
 
 
+class Smartphone(Product):
+    """
+    Добавляет класс Смартфоны, как дочерний от Product класса
+    описывает специфику смартфонов в отличие от обычных продуктов
+    """
+
+    def __init__(
+        self, name, description, price, quantity, memory, model, efficiency, color
+    ):
+        super().__init__(name, description, price, quantity)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
+
+
+class LawnGrass(Product):
+    """
+    Добавляет класс Трава, как дочерний от Product класса
+    описывает специфику продукта Трава в отличие от обычных продуктов
+    """
+
+    def __init__(
+        self, name, description, price, quantity, country, germination_period, color
+    ):
+        super().__init__(name, description, price, quantity)
+        self.country = country
+        self.germination_period = germination_period
+        self.color = color
+
+    def __add__(self, other):
+        if type(other) is LawnGrass:
+            return self.price * self.quantity + other.price * other.quantity
+        raise TypeError
+
+
 class Category:
     """Class описывает категорию продукта: имя категории, описание категории и список продуктов"""
 

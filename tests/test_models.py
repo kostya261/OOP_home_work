@@ -130,3 +130,44 @@ def test_str_category(category, product_data, capsys):
     print(category_electronika)
     captured = capsys.readouterr()
     assert captured.out == "Электроника, количество продуктов: 3 шт.\n"
+
+
+def test_smartphone_class_init(product_data3):
+    assert product_data3.name == "Samsung Galaxy S23 Ultra"
+    assert product_data3.description == "256GB, Серый цвет, 200MP камера"
+    assert product_data3.price == 180000.0
+    assert product_data3.quantity == 5
+    assert product_data3.memory == 95.5
+    assert product_data3.model == "S23 Ultra"
+    assert product_data3.efficiency == 256
+    assert product_data3.color == "Серый"
+
+
+def test_lawn_grass_init(product_data4):
+    assert product_data4.name == "Газонная трава"
+    assert product_data4.description == "Элитная трава для газона"
+    assert product_data4.price == 500.0
+    assert product_data4.quantity == 20
+    assert product_data4.country == "Россия"
+    assert product_data4.germination_period == "7 дней"
+    assert product_data4.color == "Зеленый"
+
+
+def test_smartphone_class_add(product_data3, product_data3_1):
+    assert product_data3 + product_data3_1 == 2580000.0
+
+
+def test_smartphone_class_add_incorrect_product(product_data3, product_data4):
+    with pytest.raises(TypeError):
+        result = product_data3 + product_data4
+        print(result)
+
+
+def test_lawngrass_class_add(product_data4, product_data4_1):
+    assert product_data4 + product_data4_1 == 16750.0
+
+
+def test_lawngrass_class_add_incorrect_product(product_data4, product_data3_1):
+    with pytest.raises(TypeError):
+        result = product_data4 + product_data3_1
+        print(result)
