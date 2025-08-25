@@ -52,6 +52,11 @@ build-backend = "poetry.core.masonry.api"
 *class Product* - описывает структуру продукта и производит инициализацию
 *class Category* - описывает структуру категории продуктов и производит инициализацию
 
+25.08.2025
+*class Smartphone*  - описывает структуру класса Смартфон и производит инициализацию
+*class LawnGrass*  - описывает структуру класса Трава и производит инициализацию
+
+
 
 Примеры использования:
 ```
@@ -61,6 +66,38 @@ print(product1.name)
 print(product1.description)
 print(product1.price)
 print(product1.quantity)
+
+ smartphone2 = Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
+    )
+
+print(smartphone1.name)
+print(smartphone1.description)
+print(smartphone1.price)
+print(smartphone1.quantity)
+print(smartphone1.efficiency)
+print(smartphone1.model)
+print(smartphone1.memory)
+print(smartphone1.color)
+
+grass1 = LawnGrass(
+        "Газонная трава",
+        "Элитная трава для газона",
+        500.0,
+        20,
+        "Россия",
+        "7 дней",
+        "Зеленый",
+    )
+    
+    
+print(grass1.name)
+print(grass1.description)
+print(grass1.price)
+print(grass1.quantity)
+print(grass1.country)
+print(grass1.germination_period)
+print(grass1.color)
 ```
 Результат:
 ```
@@ -83,6 +120,10 @@ new_product - добавляет/ создает новый продукт из 
 __str__
 __add__
 
+25.08.2025
+Также в новых классах смартфон и трава реализованы собственные магические методы сложения
+которые складывают только продукты своей категории
+
 
 Category:
 геттер product - возвращает список продуктов
@@ -99,6 +140,12 @@ __str__
 В них реализованы функции:
 1. test_init_products,
 2. test_category_creation,
+3. test_smartphone_class_init,
+4. test_lawn_grass_init,
+5. test_smartphone_class_add,
+6. test_smartphone_class_add_incorrect_product,
+7. test_lawngrass_class_add,
+8. test_lawngrass_class_add_incorrect_product
 
 
 Тест запускается из командной строки, командой **pytest**
