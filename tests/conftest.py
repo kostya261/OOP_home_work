@@ -15,12 +15,14 @@ def category():
 
 @pytest.fixture
 def product_data():
-    return {"name": "Ноутбук", "price": 50000, "quantity": 3, "description": "Игровой"}
+    return {"name": "Ноутбук", "price": 50000, "quantity": 3,
+            "description": "Игровой"}
 
 
 @pytest.fixture
 def product_data2():
-    return {"name": "Ноутбук", "price": 30000, "quantity": 14, "description": "Игровой"}
+    return {"name": "Ноутбук", "price": 30000,
+            "quantity": 14, "description": "Игровой"}
 
 
 @pytest.fixture
@@ -40,7 +42,8 @@ def product_data3():
 @pytest.fixture
 def product_data3_1():
     return Smartphone(
-        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
+        "Iphone 15", "512GB, Gray space", 210000.0,
+        8, 98.2, "15", 512, "Gray space"
     )
 
 

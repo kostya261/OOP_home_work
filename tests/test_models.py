@@ -16,7 +16,8 @@ def test_init_products(product_type) -> None:
 
 
 @pytest.mark.parametrize(
-    "name,description,products,expected_name,expected_desc,expected_len,expected_cat_count,expected_prod_count",
+    "name,description,products,expected_name,expected_desc,"
+    "expected_len,expected_cat_count,expected_prod_count",
     [
         # Тест 1: Обычная категория с продуктами
         (
@@ -30,7 +31,8 @@ def test_init_products(product_type) -> None:
             2,
         ),
         # Тест 2: Категория без продуктов
-        ("Books", "Reading materials", [], "Books", "Reading materials", 0, 1, 0),
+        ("Books", "Reading materials", [], "Books",
+         "Reading materials", 0, 1, 0),
         # Тест 3: Категория с одним продуктом
         (
             "Food",

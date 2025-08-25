@@ -12,7 +12,8 @@ class Product:
 
     def __add__(self, other):
         if not isinstance(other, Product):  # Проверяет класс и наследников
-            raise TypeError(f"Ожидается Product, получен {type(other).__name__}")
+            raise TypeError(f"Ожидается Product, "
+                            f"получен {type(other).__name__}")
         return self.__price * self.quantity + other.price * other.quantity
 
     @property
@@ -46,7 +47,8 @@ class Product:
         """
         Создаёт новый продукт из словаря.
 
-        :param product_data: Словарь с ключами name, price, description, quantity.
+        :param product_data: Словарь с ключами name, price,
+         description, quantity.
         :return: Объект класса Product.
         """
         return cls(
@@ -64,7 +66,8 @@ class Smartphone(Product):
     """
 
     def __init__(
-        self, name, description, price, quantity, memory, model, efficiency, color
+        self, name, description, price, quantity, memory,
+            model, efficiency, color
     ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -73,7 +76,7 @@ class Smartphone(Product):
         self.color = color
 
     def __add__(self, other):
-        if type(other) is Smartphone:
+        if isinstance(other, Smartphone):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
 
@@ -85,7 +88,8 @@ class LawnGrass(Product):
     """
 
     def __init__(
-        self, name, description, price, quantity, country, germination_period, color
+        self, name, description, price, quantity, country,
+            germination_period, color
     ):
         super().__init__(name, description, price, quantity)
         self.country = country
@@ -93,13 +97,14 @@ class LawnGrass(Product):
         self.color = color
 
     def __add__(self, other):
-        if type(other) is LawnGrass:
+        if isinstance(other, LawnGrass):
             return self.price * self.quantity + other.price * other.quantity
         raise TypeError
 
 
 class Category:
-    """Class описывает категорию продукта: имя категории, описание категории и список продуктов"""
+    """Class описывает категорию продукта: имя категории,
+    описание категории и список продуктов"""
 
     category_count = 0
     product_count = 0
@@ -118,7 +123,8 @@ class Category:
         for iterator in self.__products:
             counter_product += iterator.quantity
 
-        return f"{self.name}, количество продуктов: {counter_product} шт."  # self.product_count
+        return (f"{self.name}, количество продуктов: "
+                f"{counter_product} шт.")  # self.product_count
 
     @property
     def product(self) -> list:
@@ -135,7 +141,8 @@ class Category:
         :return:
         """
         if not isinstance(product, Product):  # Проверяет класс и наследников
-            raise TypeError(f"Ожидается Product, получен {type(product).__name__}")
+            raise TypeError(f"Ожидается Product, "
+                            f"получен {type(product).__name__}")
         self.__products.append(product)
 
 
