@@ -1,6 +1,6 @@
 import pytest
 
-from src.models import Category, Product
+from src.models import Category, Product, Smartphone
 
 sample_products = [
     Product("Product1", "Descript1", 100, 5),
@@ -31,8 +31,7 @@ def test_init_products(product_type) -> None:
             2,
         ),
         # Тест 2: Категория без продуктов
-        ("Books", "Reading materials", [], "Books",
-         "Reading materials", 0, 1, 0),
+        ("Books", "Reading materials", [], "Books", "Reading materials", 0, 1, 0),
         # Тест 3: Категория с одним продуктом
         (
             "Food",
@@ -98,7 +97,16 @@ def test_add_new_product(category, product_data, capsys):
     # Пробую поменять цену на нулевую
     product.set_price(0)
     captured = capsys.readouterr()
-    assert captured.out == "\nЦена не должна быть нулевая или отрицательная\n"
+    """    print()
+    print()
+    print(">>>>")
+    print(captured.strip().split("\n"))
+    print("<<<<")
+    print()
+    print()"""
+    assert (
+        captured.out.split("\n")[2] == "Цена не должна быть нулевая или отрицательная"
+    )
 
 
 def test_add_product(product_data, product_data2):
@@ -119,7 +127,7 @@ def test_str_product(product_data, capsys):
     prod1 = Product.new_product(product_data)
     print(prod1)
     captured = capsys.readouterr()
-    assert captured.out == "Ноутбук, 50000 руб. Остаток 3\n"
+    assert captured.out.split("\n")[1] == "Ноутбук, 50000 руб. Остаток 3"
 
 
 def test_str_category(category, product_data, capsys):
@@ -131,7 +139,7 @@ def test_str_category(category, product_data, capsys):
 
     print(category_electronika)
     captured = capsys.readouterr()
-    assert captured.out == "Электроника, количество продуктов: 3 шт.\n"
+    assert captured.out.split("\n")[1] == "Электроника, количество продуктов: 3 шт."
 
 
 def test_smartphone_class_init(product_data3):
@@ -173,3 +181,20 @@ def test_lawngrass_class_add_incorrect_product(product_data4, product_data3_1):
     with pytest.raises(TypeError):
         result = product_data4 + product_data3_1
         print(result)
+
+
+def test_mixin_log(capsys):
+    Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    captured = capsys.readouterr()
+    assert (
+        captured.out.strip()
+        == "Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)"
+    )
+    Smartphone(
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2,
+        "15", 512, "Gray space"
+    )
+    captured = capsys.readouterr()
+    assert (
+        captured.out.strip() == "Smartphone(Iphone 15, 512GB, Gray space, 210000.0, 8)"
+    )

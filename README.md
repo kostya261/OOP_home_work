@@ -56,7 +56,12 @@ build-backend = "poetry.core.masonry.api"
 *class Smartphone*  - описывает структуру класса Смартфон и производит инициализацию
 *class LawnGrass*  - описывает структуру класса Трава и производит инициализацию
 
-
+26.08.2025
+Добавлены:
+Абстрактный класс:
+*BaseProduct*
+И Mixin
+*MixinLog* - который отображает на экране информацию о создаваемом классе продукта
 
 Примеры использования:
 ```
@@ -145,7 +150,8 @@ __str__
 5. test_smartphone_class_add,
 6. test_smartphone_class_add_incorrect_product,
 7. test_lawngrass_class_add,
-8. test_lawngrass_class_add_incorrect_product
+8. test_lawngrass_class_add_incorrect_product,
+9. test_mixin_log
 
 
 Тест запускается из командной строки, командой **pytest**

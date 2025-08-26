@@ -1,4 +1,32 @@
-class Product:
+from abc import ABC, abstractmethod
+
+
+class BaseProduct(ABC):
+    @abstractmethod
+    def __init__(self):  # , name, description, price, quantity):
+        pass
+
+    @abstractmethod
+    def __str__(self):
+        pass
+
+    @abstractmethod
+    def __add__(self, other):
+        pass
+
+
+class MixinLog:
+    def __init__(self):  # , name, description, price, quantity):
+        """Миксин для логирования создания объектов."""
+
+        print(repr(self))
+
+    def __repr__(self):
+        """Возвращает строковое представление объекта для разработчика."""
+        return f"{self.__class__.__name__}({self.name}, {self.description}, {self.price}, {self.quantity})"
+
+
+class Product(MixinLog, BaseProduct):
     """Class описывает продукт: его имя, описание, цена, количество"""
 
     def __init__(self, name, description, price, quantity):
@@ -6,14 +34,14 @@ class Product:
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
     def __str__(self):
         return f"{self.name}, {self.__price} руб. Остаток {self.quantity}"
 
     def __add__(self, other):
         if not isinstance(other, Product):  # Проверяет класс и наследников
-            raise TypeError(f"Ожидается Product, "
-                            f"получен {type(other).__name__}")
+            raise TypeError(f"Ожидается Product, " f"получен {type(other).__name__}")
         return self.__price * self.quantity + other.price * other.quantity
 
     @property
@@ -66,8 +94,7 @@ class Smartphone(Product):
     """
 
     def __init__(
-        self, name, description, price, quantity, memory,
-            model, efficiency, color
+        self, name, description, price, quantity, memory, model, efficiency, color
     ):
         super().__init__(name, description, price, quantity)
         self.efficiency = efficiency
@@ -88,8 +115,7 @@ class LawnGrass(Product):
     """
 
     def __init__(
-        self, name, description, price, quantity, country,
-            germination_period, color
+        self, name, description, price, quantity, country, germination_period, color
     ):
         super().__init__(name, description, price, quantity)
         self.country = country
@@ -123,8 +149,9 @@ class Category:
         for iterator in self.__products:
             counter_product += iterator.quantity
 
-        return (f"{self.name}, количество продуктов: "
-                f"{counter_product} шт.")  # self.product_count
+        return (
+            f"{self.name}, количество продуктов: " f"{counter_product} шт."
+        )  # self.product_count
 
     @property
     def product(self) -> list:
@@ -141,8 +168,7 @@ class Category:
         :return:
         """
         if not isinstance(product, Product):  # Проверяет класс и наследников
-            raise TypeError(f"Ожидается Product, "
-                            f"получен {type(product).__name__}")
+            raise TypeError(f"Ожидается Product, " f"получен {type(product).__name__}")
         self.__products.append(product)
 
 
