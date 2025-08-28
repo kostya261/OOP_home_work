@@ -19,7 +19,10 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.13"
 poetry-core = "^2.1.3"
-
+platformdirs = "==4.4.0"
+click = "==8.2.2"
+typing-extensions = "==4.15.0"
+coverage = "==7.10.5"
 
 
 [tool.poetry.group.lint.dependencies]
@@ -62,6 +65,11 @@ build-backend = "poetry.core.masonry.api"
 *BaseProduct*
 И Mixin
 *MixinLog* - который отображает на экране информацию о создаваемом классе продукта
+
+28.08.2025
+дополнил класс Product проверкой на наличие товара. Что бы кол-во поступаемого товара было больше 0
+
+дополнил класс Category методом вычисляющим среднюю сумму всех товаров категории
 
 Примеры использования:
 ```
@@ -151,7 +159,13 @@ __str__
 6. test_smartphone_class_add_incorrect_product,
 7. test_lawngrass_class_add,
 8. test_lawngrass_class_add_incorrect_product,
-9. test_mixin_log
+9. test_mixin_log,
+10. test_middle_price_with_products,
+11. test_middle_price_single_product,
+12. test_middle_price_empty_category,
+13. test_middle_price_zero_price,
+14. test_product_zero_quantity,
+15. test_product_negative_quantity
 
 
 Тест запускается из командной строки, командой **pytest**

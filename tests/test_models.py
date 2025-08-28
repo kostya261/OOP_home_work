@@ -191,10 +191,58 @@ def test_mixin_log(capsys):
         == "Product(Samsung Galaxy S23 Ultra, 256GB, Серый цвет, 200MP камера, 180000.0, 5)"
     )
     Smartphone(
-        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2,
-        "15", 512, "Gray space"
+        "Iphone 15", "512GB, Gray space", 210000.0, 8, 98.2, "15", 512, "Gray space"
     )
     captured = capsys.readouterr()
     assert (
         captured.out.strip() == "Smartphone(Iphone 15, 512GB, Gray space, 210000.0, 8)"
     )
+
+
+def test_middle_price_with_products():
+    """Тест средней цены с товарами."""
+    product1 = Product("Товар1", "Описание1", 100, 2)
+    product2 = Product("Товар2", "Описание2", 200, 3)
+    category = Category("Тест", "Тестовая", [product1, product2])
+
+    assert category.middle_price() == 400.0
+
+
+def test_middle_price_single_product():
+    """Тест средней цены с одним товаром."""
+    product = Product("Товар", "Описание", 500, 1)
+    category = Category("Тест", "Тестовая", [product])
+
+    assert category.middle_price() == 500.0
+
+
+def test_middle_price_empty_category():
+    """Тест средней цены пустой категории."""
+    category = Category("Пустая", "Нет товаров", [])
+
+    assert category.middle_price() == 0.0
+
+
+def test_middle_price_zero_price():
+    """Тест средней цены с товаром нулевой цены."""
+    product1 = Product("Товар1", "Описание1", 0, 2)
+    product2 = Product("Товар2", "Описание2", 100, 1)
+    category = Category("Тест", "Тестовая", [product1, product2])
+
+    assert category.middle_price() == 50.0
+
+
+def test_product_zero_quantity(capsys):
+    """Тест создания продукта с нулевым количеством."""
+    with pytest.raises(
+        ValueError, match="Товар с нулевым количеством не может быть добавлен!"
+    ):
+        Product("Товар1", "Описание1", 1000, 0)
+
+
+def test_product_negative_quantity():
+    """Тест создания продукта с отрицательным количеством."""
+    with pytest.raises(ValueError) as exc_info:
+        Product("Товар1", "Описание1", 1000, -5)
+
+    assert "Товар с нулевым количеством не может быть добавлен!" in str(exc_info.value)

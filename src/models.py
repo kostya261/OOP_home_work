@@ -33,7 +33,11 @@ class Product(MixinLog, BaseProduct):
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен!")
+        else:
+            self.quantity = quantity
+
         super().__init__()
 
     def __str__(self):
@@ -79,12 +83,13 @@ class Product(MixinLog, BaseProduct):
          description, quantity.
         :return: Объект класса Product.
         """
-        return cls(
+        """return cls(
             name=product_data["name"],
             price=product_data["price"],
             description=product_data["description"],
             quantity=product_data["quantity"],
-        )
+        )"""
+        return cls(**product_data)
 
 
 class Smartphone(Product):
@@ -170,6 +175,24 @@ class Category:
         if not isinstance(product, Product):  # Проверяет класс и наследников
             raise TypeError(f"Ожидается Product, " f"получен {type(product).__name__}")
         self.__products.append(product)
+
+    def middle_price(self) -> float:
+        """
+        Подсчитывает среднюю цену всех товаров в категории.
+
+        Returns:
+            float: Средняя цена товаров или 0, если товаров нет
+        """
+        if not self.__products:
+            return 0.0
+
+        total_price = 0.0
+        for product_tmp in self.__products:
+            total_price += product_tmp.price * product_tmp.quantity
+        try:
+            return round(total_price / len(self.__products), 2)
+        except ZeroDivisionError:
+            return 0.0
 
 
 if __name__ == "__main__":

@@ -2,8 +2,7 @@ from src.models import Category, Product
 
 if __name__ == "__main__":
     product1 = Product(
-        "Samsung Galaxy S23 Ultra",
-        "256GB, Серый цвет, 200MP камера", 180000.0, 5
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
@@ -59,8 +58,7 @@ if __name__ == "__main__":
         print(f"Цена: {product.price}")
         print("-----")
 
-    prod3 = Product("Androider 13", "Круче Супер Крутого крутого телефона",
-                    30_000, 15)
+    prod3 = Product("Androider 13", "Круче Супер Крутого крутого телефона", 30_000, 15)
     category1.add_product(prod3)
 
     # Данные товара в виде словаря
@@ -91,8 +89,7 @@ if __name__ == "__main__":
     print("_____Домашнее задание 15.1______")
 
     product1 = Product(
-        "Samsung Galaxy S23 Ultra",
-        "256GB, Серый цвет, 200MP камера", 180000.0, 5
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
     )
     product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
     product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
@@ -127,12 +124,16 @@ if __name__ == "__main__":
     print(product1 + product3)
     print(product2 + product3)
 
+    print()
     print("_____Домашнее задание 16.2______")
+    print()
 
-    from src.models import Product, Category
+    from src.models import Category, Product
 
-    if __name__ == '__main__':
-        product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    if __name__ == "__main__":
+        product1 = Product(
+            "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+        )
         product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
         product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
 
@@ -158,10 +159,12 @@ if __name__ == "__main__":
         print(product3.price)
         print(product3.quantity)
 
-        category1 = Category("Смартфоны",
-                             "Смартфоны, как средство не только коммуникации, "
-                             "но и получения дополнительных функций для удобства жизни",
-                             [product1, product2, product3])
+        category1 = Category(
+            "Смартфоны",
+            "Смартфоны, как средство не только коммуникации, "
+            "но и получения дополнительных функций для удобства жизни",
+            [product1, product2, product3],
+        )
 
         print(category1.name == "Смартфоны")
         print(category1.description)
@@ -171,12 +174,14 @@ if __name__ == "__main__":
 
         print()
 
-        product4 = Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
+        product4 = Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
         #    print(product4.__repr__())
-        category2 = Category("Телевизоры",
-                             "Современный телевизор, который позволяет наслаждаться просмотром, "
-                             "станет вашим другом и помощником",
-                             [product4])
+        category2 = Category(
+            "Телевизоры",
+            "Современный телевизор, который позволяет наслаждаться просмотром, "
+            "станет вашим другом и помощником",
+            [product4],
+        )
 
         print(category2.name)
         print(category2.description)
@@ -185,3 +190,34 @@ if __name__ == "__main__":
 
         print(Category.category_count)
         print(Category.product_count)
+
+    print()
+    print("_____Домашнее задание 17.1______")
+    print()
+
+    try:
+        product_invalid = Product("Бракованный товар", "Неверное количество", 1000.0, 0)
+    except ValueError:
+        print(
+            "Возникла ошибка ValueError прерывающая работу программы "
+            "при попытке добавить продукт с нулевым количеством"
+        )
+    else:
+        print(
+            "Не возникла ошибка ValueError при попытке добавить продукт с нулевым количеством"
+        )
+
+    product1 = Product(
+        "Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5
+    )
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    category1 = Category(
+        "Смартфоны", "Категория смартфонов", [product1, product2, product3]
+    )
+
+    print(category1.middle_price())
+
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    print(category_empty.middle_price())
